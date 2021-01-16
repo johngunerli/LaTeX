@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage[cm]{fullpage}
+\usepackage{color}
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting parameters  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tabin}
+\setlength{\tabin}{1em}
+\newlength{\secsep}
+\setlength{\secsep}{0.1cm}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\definecolor{contactgray}{gray}{0.3}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Template Definitions  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lineunder}{\vspace*{-8pt} \\ \hspace*{-6pt} \hrulefill \\ \vspace*{-15pt}}
+\newcommand{\name}[1]{\begin{center}\textsc{\Huge#1}\\\end{center}}
+\newcommand{\program}[1]{\begin{center}\textsc{#1}\end{center}}
+\newcommand{\contact}[1]{\begin{center}\color{contactgray}{\small#1}\end{center}}
+
+\newenvironment{tabbedsection}[1]{
+  \begin{list}{}{
+      \setlength{\itemsep}{0pt}
+      \setlength{\labelsep}{0pt}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\leftmargin}{\tabin}
+      \setlength{\rightmargin}{\tabin}
+      \setlength{\listparindent}{0pt}
+      \setlength{\parsep}{0pt}
+      \setlength{\parskip}{0pt}
+      \setlength{\partopsep}{0pt}
+      \setlength{\topsep}{#1}
+    }
+  \item[]
+}{\end{list}}
+
+\newenvironment{nospacetabbing}{
+    \begin{tabbing}
+}{\end{tabbing}\vspace{-1.2em}}
+
+\newenvironment{resume_header}{}{\vspace{0pt}}
+
+
+\newenvironment{resume_section}[1]{
+  \filbreak
+  \vspace{2\secsep}
+  \textsc{\large#1}
+  \lineunder
+  \begin{tabbedsection}{\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{resume_subsection}[2][]{
+  \textbf{#2} \hfill {\footnotesize #1} \hspace{2em}
+  \begin{tabbedsection}{0.5\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{subitems}{
+  \renewcommand{\labelitemi}{-}
+  \begin{itemize}
+      \setlength{\labelsep}{1em}
+}{\end{itemize}}
+
+\newenvironment{resume_employer}[4]{
+  \vspace{\secsep}
+  \textbf{#1} \\ 
+  \indent {\small #2} \hfill {\footnotesize#3 (#4)}
+  \begin{tabbedsection}{0pt}
+  \begin{subitems}
+}{\end{subitems}\end{tabbedsection}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Start Document     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{resume_header}
+\name{Hakan ``John" Can  Gunerli}
+\program{Computer Science Major}
+\contact{Personal Email: hakancangunerli@gmail.com \hspace{2cm} 415-323-6804 \hspace{2cm}Student Email: hgunerli1@student.gsu.edu}
+\contact{GitHub: hakancangunerli  \hspace{2cm} LinkedIn: hakancangunerli}
+\contact{BitBucket : hakancangunerli}
+\end{resume_header}
+
+\begin{resume_section}{About Me}
+  \begin{nospacetabbing}
+  \textbf{Programming}  \=Proficient in: Python 3, , Java Familiar with: JavaScript, C\#, \LaTeX\\
+  \textbf{Interests} \>Etymology, History, Digital Hoarding, Scientific Research, Storm Chasing, UX Design\\* 
+  \end{nospacetabbing}
+\end{resume_section}
+\begin{resume_section}{Work Experience}
+
+\begin{resume_employer}{Software Engineering Intern}{Türkiye İş Bankası A.Ş.
+}{Istanbul, Turkey}{September 2020-Present}
+ \item Interned at payment processing, one of the backbones of the company's profit areas. 
+ \item Worked with a team of 5 engineers on POS orchestration software.
+ \item Used C# in the backend and Angular in the frontend to create a visual JSON connection program.
+\item Languages used: Angular, C\#
+\item Systems used: MongoDB, .NET
+    \end{resume_employer}
+      \begin{resume_employer}{Co-Founder, CEO}{tal-labs}{Atlanta, GA }{May 2019 -Currently}
+    
+    \item tal-labs was formulated to create products and services for the productivity sector.
+\item Currently a team of 6 Software Engineers, tal-labs aims to provide services for people who just need more management and order in their lives.
+
+  \end{resume_employer}
+    
+ \begin{resume_employer}{Course Instructor}{theCoderSchool}{Johns Creek, GA}{August 2019-Present}
+  \item  -Assess and look after 50+ students' progress throughout the year and design projects with other staff to create an immersive teaching experience.
+
+  \item Plan the content to be covered in the class according to the curriculum, the number of weeks available and the date of project deadlines.
+  \item Taught web development, web design, mobile development, graphical user interface design and web application design
+
+  \item Frameworks taught: React, Bootstrap, Django, Flask,
+  \item Languages taught: Scratch, Snap!, Python, JavaScript, C#
+    \end{resume_employer}
+    
+ 
+    
+    
+  \begin{resume_employer}{Cloud DevOps Engineer}{uVox Inc.}{Alpharetta, GA}{May 2019-Present}
+\item Work with a team of 5 engineers in development and migration to the cloud.
+\item Implemented tools in GCP and in Docker containers.
+\item Created reports and reported to the CEO directly about possible technologies to be implemented.
+
+\item Tech used: GCP, AWS, Python3, Linux
+    \end{resume_employer}
+   
+  
+
+
+ 
+
+
+  
+\end{resume_section}
+\begin{resume_section}{Community Involvements}
+ \begin{resume_employer}   {Front-end Developer}{American Red Cross}{Washington D.C.}{May 2019-Present}
+    \item Help the programming team maintain the design and structure of the website.
+    \item Use Adobe Experience Cloud for content and audience management.
+  \end{resume_employer}
+
+
+
+\end{resume_section}
+
+
+\begin{resume_section}{Education}
+  \begin{resume_subsection}[Atlanta, GA (2019--Present)]{Georgia State University: Honors College }
+    \begin{subitems}
+       \item Computer Science \textit{Bachelor of Science, 3.9/4.30 GPA }  Expected December 2023
+       \item Computer Science Club President, PantherHackers Member
+    \end{subitems}
+  \end{resume_subsection}
+
+\end{resume_section}
+
+\begin{resume_section}{Certifications}
+  \begin{nospacetabbing}
+
+  \textbf{Programming Certifications}  \= University of Michigan: Python Data Structures, deeplearning.io: Artificial Intelligence
+  \end{nospacetabbing}
+\end{resume_section}
+\end{document}
