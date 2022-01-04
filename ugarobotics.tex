@@ -1,0 +1,316 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Tabletop Interface for Multi-Robot systems \\ CURO Undergraduate Research Report (CSCI 4960) \\ Fall 2021
+}
+\author{\IEEEauthorblockN{ Hakan Can Gunerli}
+\IEEEauthorblockA{\textit{Franklin College of Arts and Sciences} \\
+\textit{University of Georgia}\\
+Athens, GA, United States\\
+0000-0001-6282-4871}
+}
+
+\maketitle
+
+
+\begin{abstract}
+This document is a final report from my Fall 2021 research experience as an undergraduate research assistant at the University of Georgia. My mentor, Nazish Tahir, a doctoral student at the Department of Computer Science at the University of Georgia, directed the effort to create an intuitive tabletop interface that seeks to provide the user with increased levels of Situational Awareness while they compare and contrast a visual tabletop interface with two robots (one being remote and the other being proxy) to a conventional screen-based interface. 
+
+\end{abstract}
+\begin{IEEEkeywords}
+Multi-Robot Systems, Human-Robot Interfaces, Situational Awareness Situation Awareness (SA), Human-Robot Interaction (HRI)
+\end{IEEEkeywords}
+
+
+\section{Introduction and Motivation}
+
+The expeditious development within the field of computing is astonishing, and Robotics unanimously benefited from these advancements in technology. As humans get to interact with robots more and more, the field of Human-Robot interaction has been the center of attention of this development. For decades, robots have been more and more involved in support of many human-related tasks such as military operations, search and rescue tasks and more. To aid these human-related tasks, the newer generation of robots have been equipped with more sensors and various other technologies such as Li-DAR, cameras, and other telemetry units to provide better perception and understanding of their surroundings. One of the earliest examples of the adoption of such technological advancements has been \textit{Shakey the Robot}, an ambitious project of its time about the perception of robots funded by the United States Department of Defense’s research and development agency, DARPA\cite{b1}. As great development occurred in the field of single-unit systems (SRS), many researchers and teams have shifted their focus onto the field of multi-robot systems (MRS). \cite{b2} Such multi-robot teams have advantages such as providing situational awareness from different locations at the same time, which leads to faster exploration and also provides fault-tolerance in order to provide more reliability compared to their single-robot counterparts. \cite{b3} \cite{b2}. 
+
+
+As the interaction between robots and humans increase —regardless of whether they are MRS or SRS or  — there have been several topics of discussion that have emerged as key factors to consider when it comes to designing interfaces in Human-Robot Interaction:\cite{b4}
+
+\begin{itemize}
+\item Situational awareness (SA): 
+Situational Awareness is formally defined as ”the perception of objects within an environment ... the comprehension of their meaning and the projection of their status in the near future”. \cite{b5} Managing large workloads while keeping an adequate level of situational awareness is one of the most difficult jobs for single human operators employing robot tele-operated systems. An atrophied level of SA could lead to a series of costly mistakes caused by the operator. \cite{b6}
+\item Operator Workload:     
+ Workload within the context of this paper can be loosely defined as a measurable quantity of the information processing demands placed on an individual by a task. \cite{b7} However, this could be further divided into subcategories such as physical and/or mental load. \cite{b8} As described by the authors of \cite{b9}, a high operator workload can lead to a reduction of understanding by the operator as the person struggles with the judgment and assessment of the information provided to them. \cite{b9}
+
+\item{Human Error}:
+Human error is generally defined as an undesirable decision and behavior that affects the performance or the outcome. \cite{b10} While there are various factors that can lead to a human error during an interaction with software, within the context of this paper, we consider the human errors we measure most-likely to be caused by the mental workload to the operator and not due to a physical workload given there is no physical action taken by the operator within the duration of the experiment. This is a significant area for consideration while designing interfaces since the mental workload demand caused by the interfaces is an important factor when understanding user performance. \cite{b11} \\
+
+\item Usability: 
+An interface could be defined as intuitively usable when the particular operator is able to interact effectively, not consciously using previous knowledge.  \cite{b12} One of the key issues that usability must tackle is the act of lowering down the mental load caused by the interface, and provide as little of a learning curve as possible. 
+\end{itemize}
+
+
+
+In this paper, we address these key issues within HRI addressed above with a tabletop interface design that seeks to increase SA and usability while decreasing human errors caused by the user and mental workload to the operator. We seek to justify and demonstrate the validity of our claim by comparing our proposed interface with a conventional screen-based interface through a series of scenarios and questionnaires. The scenarios will allow us to actively monitor the continuous situational awareness as well as the transitory situational awareness. The questionnaires, which are commonly used within the academia will provide the objective data for the key issues mentioned above. The motivation behind designing such an interface is to provide the operators with an increased understanding of their surroundings through a usable and intuitive yet descriptive interface that reduces their mental workload. 
+
+
+The remainder of the paper is organized as follows: \textbf{Section II} provides an introductory literature review and related research, \textbf{Section III} provides an in-depth description of the proposed system, \textbf{Section IV} provides a description of the experiment and the methods of experimentation, and finally, \textbf{Section V} provides a brief discussion with a conclusion to our study.
+
+
+
+
+
+
+\section{Literature Review}
+The literature review for this medium included several databases, including but not limited to: Google Scholar, Academy of Computing Machinery (ACM), Institute of Electrical and Electronics Engineers (IEEE), and Semantic Scholar. These search results that we have received have been sifted based on its recency, relevancy to our subject matter (some of the keywords included were Situational Awareness, Multi-Robot Interfaces, and User Interfaces), and credibility of the author as well as the work. 
+
+Much interest has been given to providing operators with intuitive interfaces with several approach methods; however not many with tabletop interfaces arose within the academia, based on the search we have conducted. Interface approaches have been further categorized into two major categories, two-dimensional interfaces and three-dimensional interfaces:
+
+\subsection{Two-dimensional interfaces}
+Some interfaces stick to providing users with a screen-based interface while providing them with a more interactive option that heavily relies on video feed \cite{b13}. \cite{b14}  tested the validity of whether the map or video-centric displays have provided more awareness to the user and concluded that map-centric interfaces provided the user with a much better understanding of the location of the user while video-centric provided the user with a much better understanding of their surroundings. \cite{b15} concluded that the operators were able to cover more area with the map-centric interface, although users themselves preferred the camera-centric interface due to its ease of use. A so-called more-modern approach was also introduced in another study,  providing the user with a more tactile haptic tablet display which supposedly reduces SA by providing tactile feedback to the user \cite{b16}.All of these aforementioned displays have provided the user with a single view frame. Only in \cite{b13}, the users were allowed to control the robot they chose by selecting the robot through the interface, although the camera feed only offered the view of one robot at a time. 
+
+
+\subsection{Three-dimensional interfaces}
+
+There are three ways that a 3D interface can be achieved, Virtual Reality (VR), Augmented Reality (AR), and finally, a combination of two, commonly referred to as Mixed-Reality (MR). VR is a complete simulated experience where the operator interacts with objects that mimic reality and/or only exist virtually. AR, on the other hand, works in the real world while supplementing the objects present within the real world. Finally, MR is a combination of two with varying degrees of a real and virtual world, depending on the application. \cite{b20}
+
+ Given these interfaces mimic/enhance the real world perception of the operator through first-person view, most of the interfaces described within the papers are confined to a single viewing frame at a time. Due to various factors such as low-cost applications, recent popularity, and level of immersion provided, there have been various papers that have focused on various phases of immersive systems ranging from Augmented reality interfaces that seek to enhance the immersiveness through providing operators with spatial points within their visual space area \cite{b17}, providing a set of laser measurements that align real objects by using stereo imaging techniques with edge detection for image processing \cite{b18} to providing a complete 3D immersive display with a first-person view (FPV) using a Head-Mounted Display (HMD) \cite{b19}. There even has been comprehensive study done that provides a complete comparison of the immersiveness of all four types of displays, these being a non-predictive, predictive, non-predictive Virtual Reality and predictive Virtual Reality interface \cite{b20}, where it was concluded that Virtual Reality interfaces have provided the users with most situational awareness without sacrificing the user of their workload.  
+
+From these related works, we have concluded that there is an under-explored area within literature. That is, there has not been that many studies that explored the idea of creating an interface that is tangible within our physical world yet provides the feedback and situational awareness similar to the ones provided by Virtual Reality. We believe that there is a need for such an interface, where the operator is provided with a high-quality, tangible, immersive, and an intuitive interface without the opportunity cost of mental workload. 
+
+\begin{figure}[h]
+
+\frame{\includegraphics[width=8cm]{Picture1.png}}
+\caption{Experimental setup of the newly proposed interface}
+\centering
+\end{figure}
+
+\section{Design and Implementation}
+
+
+In this paper, we propose an intuitive tabletop interface that provides the operator with useful data such as robot state, information about its environment, network status, camera position, and robot trajectory, and many other useful information for better SA. This is done through a system made up of two robots, one is a remote field robot where it navigates the surroundings and creates a live map simultaneously as it is navigating. This obtained map is  scaled to the dimensions of the table, combined with additional telemetry data such as the camera feed, and is then projected onto the control room tabletop, where the operator is located. The interface is accompanied by a proxy robot located on top of the tabletop interface and imitates the movements of its counterpart. The simultaneous communication between the field robot and the proxy robot is conducted through Wi-Fi in order to ensure high-speed connectivity and reduce latency between the robots. 
+
+
+\subsection{Design}
+\subsubsection{Robots and Visualization Software}
+The proposed system is made up of two robots, one being a field robot and the other being the proxy robot. The field robot chosen for this system is a TurtleBot 2 built by ClearPath Robotics. \cite{b21} The field is equipped with an iClebo Kobuki base, a Hokuyo URG-04LX 2D LiDAR, a generic web camera, and a Microsoft Kinect depth sensor. The Turtlebot 2 is also equipped with a Ubuntu laptop to ensure connectivity between the master laptop which houses the interface, the proxy robot, and the base. For the proposed interface, there is an additional robot by the name of the proxy robot, which is meant to mimic the action of the field robot onto the tabletop interface. The proxy robot is a robot called HeroSwarm that is designed and built in-house for swarm robotics applications.\cite{b22} It is equipped with a Raspberry Pi Zero that supports communication between the remote robot and the proposed interface. To ensure the localization of the proxy robot, a piece of software is run that provides localization information through AprilRobotics' AprilTags system. \cite{b23}
+
+Visualization of the remote robot is done through the system provided within the Robot Operating System (ROS) Visualization system (RViz for short). The map provides the operator with information about the rendering of the points received from the LaserScan system located at the field robot with red lines on the map. The field robot is able to autonomously navigate itself, subsequently create a map, and localize itself using readily available OpenSLAM gmapping software for Turtlebot 2. \cite{b24} The generic web camera within the field robot is also able to provide the operator with images that are received and stream them live onto the tabletop interface to provide more SA. This camera allows the operator to experience what is called the first-person point of view (POV for short) from the eyes of the field robot. 
+
+
+\section{Experimental Analysis and Methods}
+Since we would like to reduce the effects of the learning effect within the study, we will be conducting within-subjects trials instead of between-subjects for comparing the baseline interface with the new tabletop interface through two scenarios. The nature of the experiment is revealed at the end to the participants in order to avoid biasing effects between interfaces. Each participant is required to take part in each of the scenarios and answer a series of questionnaires to describe their experience with the baseline interface as well as the proposed interface. The experimentee does not actively partake in the navigation of the robot; they are only tasked with the supervisory role of the both robots through the baseline and proposed tabletop interface. There exists no direct line of sight interaction with the remote field robot in Scenario 2.
+
+
+\subsection{Baseline Interface}
+The conventional baseline interface is a conventional screen-based interface that provides information regarding the mapping and the camera stream of the field robot onto a regular computer display. This interface neither uses the tabletop domain nor the so-called proxy robot since the experiment is about testing whether the proposed interface provides the operator with more Situational Awareness. This interface is also called the baseline interface within the context of this experiment. 
+
+\graphicspath{mapping.png}
+\begin{figure}[h]
+\includegraphics[width=8cm]{mapping.png}
+\caption{Mapping of the robot through the baseline interface}
+\end{figure}
+
+
+\subsection{Proposed Tabletop interface}
+The proposed interface located in \textbf{Figure 1} could be described as the super-set of the baseline interface. It has all the data provided by the baseline interface, with additions that are believed to increase the SA of the operator while lowering the mental load. Notwithstanding, the proposed interface projects the information received by the field robot onto a tabletop where the proxy robot is located. The task of the proxy robot is to mimic the movement of the field robot in a scaled manner while the field robot is navigating through the environment.
+
+\subsection{ Procedure} Written and verbal instructions will be given to the participant before the beginning of the experiment. Participants then have to answer a general background questionnaire (fill-in) in order to determine their demographic background as well as their knowledge about robots and interfaces. The interfaces are tested with two scenarios each, four experiments in total:
+
+\begin{figure}[h]
+
+\frame{\includegraphics[width=8cm]{scenario2_path.png}}
+\caption{The map and the trajectory of Scenario 1 and 2 where the arrows designate the path that the robot will follow.}
+\centering
+\end{figure}
+
+
+\subsubsection{Scenario 1} 
+
+The operator is asked to monitor the interface as the robot explores several rooms  and tries to find symbols in the area with a set trajectory that the operator does not initially know about. Within the duration of the experiment, no break is taken. 
+
+\subsubsection{Scenario 2}The operator is asked to monitor the interface as the robot explores its environment. Within this scenario, the operator is tasked with supervising the robot for some time as it is going through its trajectory and is asked to take a break and re-evaluate the robot's actions following the break  with the intention of checking the operator's ability to maintain SA during the transient period caused by the break.
+
+\paragraph {Transitory period within Scenario 2}
+Within scenario 2, a transitory period is introduced for understanding the transient SA of the operator. This would be assessed with a Situation Awareness Global Assessment Technique (SAGAT) test, where the operator is required to draw the perceived path of the robot as the robot navigates within the environment. The transient period is only tested while Scenario 2 is conducted since there is no break taken within Scenario 1. 
+
+    \subsection{Task} The participants are asked to monitor the interface as the robot was exploring the environment. The participant’s goal is to recognize where the robot is heading, what symbols it recognizes along the way, and the overall trajectory of the robot as it is being operated.  The robot in total explores six rooms, nine symbols placed in different rooms. 
+
+    \subsection{How metrics are obtained}
+    
+    \begin{figure}[h]
+\includegraphics[width=5cm]{metrics.png}
+\caption{Metrics measured}
+\end{figure}
+
+The operator is provided with a questionnaire that is meant to be filled during the exploration, and then the participant is asked to take a break. The purpose of this break, while the exploration task is ongoing, is to evaluate the SA to understand if they’re still in touch with the interface/SA is not discontinued. The participant does not have any direct line of sight with the robot itself, and the only source of Situational Awareness is provided through the interface. Two minutes after resuming the task, the participant is asked to answer a questionnaire on continued SA. After filling the questionnaire, participants resume the task until completion. After the exploration task is complete, the operator is asked to fill out two surveys that determine the Mental Load (NASA-TLX), Situational Awareness Rating Technique (SART 10D), and Situation Awareness Global Assessment Technique (SAGAT). At the end of testing both scenarios, operators are required to fill out a Usability testing questionnaire. The purpose of these surveys are as follows:
+
+\subsubsection{SART10D} 
+The purpose of the Situational Awareness Rating Technique is to obtain subjective experience information about the tested interface. It is made up of 10 dimensions (focusing of attention, information quantity, information quality, instability of the situation, concentration of attention,division of attention, complexity of the situation, variability of the situation, arousal, and spare mental capacity). \cite{b25}
+
+\subsubsection{NASA-TLX} 
+The NASA-TLX questionnaire is made up of 6 dimensions (Mental Demand, Physical Demand, Temporal Demand, Performance, Effort, Frustration)  \cite{b26} where the weighted average of these dimensions is later used to estimate the projected workload to the user. 
+
+\subsubsection{SAGAT} 
+To obtain information about the transitory understanding of the operator, a Situation Awareness Global Assessment Technique (SAGAT) is introduced for assessing Scenario 2. The purpose of this questionnaire is to effectively measure SA while the operator has taken a break and use this point as a break-point to partially report on the perspective of the operator. \cite{b27} More information about the question can be found in the appendix \textbf{Figure 6}.
+
+\subsubsection{Usability Questionnaire}
+The purpose of the usability questionnaire is to obtain information regarding the operator's preference for one interface above the other. The dimensions tested are the overall preference, ease of use, clarity and functionality. More information about the question can be found in the appendix \textbf{Figure 5}.
+
+\subsection{Experiment Analysis}
+Due to time constraints, the experiments will be conducted during the Spring 2022 semester with human-subject studies and the results will be then analyzed. 
+
+
+\section{Discussions and Conclusions} 
+In this paper, we propose a new intuitive and intelligent tabletop interface that will provide a new outlook and possibilities for human-multi-robot interaction. We introduce a system of proxy and field robot communication through a tabletop surface that is believed to also provide the operator with extra information that increases SA while lowering the workload of the operator. Given this is an ongoing research endeavor, we plan to investigate and perform the necessary experiments with human-subject studies on this project to prove the validity of this proposed approach. This interface can be further scaled up to include a multitude of field robots as well as proxy robots and the maps generated by the several field robots can be merged to create a more fault-tolerant map. Albeit only supervision by the experimentee is within possibility for now, the role of the operator can further be increased to include real-time manipulation of the field robot through an action taken on the proxy robot on the tabletop to provide a two-way communication between the robot systems. 
+ 
+\section*{Acknowledgments}
+
+My involvement within this project has been possible by the support of the University of Georgia Heterogeneous Robotics Lab. I also especially would like to thank my project advisor, Nazish Tahir, and Dr. Ramviyas Parasuraman for their efforts and mentoring during my involvement in this project; it truly would not have been possible without their support. 
+
+
+\newpage
+\section{Appendix}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{Usability.png}
+\caption{Usability questions}
+\end{figure} 
+
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{SAGAT_IRB.png}
+\caption{SAGAT Questionnaire}
+\end{figure} 
+
+\newpage
+\begin{thebibliography}{00}
+
+
+
+\bibitem{b1} Nilsson, Nils J.. “Shakey the Robot.” (1984).
+
+\bibitem{b2}
+  Yan, Zhi, et al. “A Survey and Analysis of Multi-Robot Coordination.” International Journal of Advanced Robotic Systems, Dec. 2013, doi:10.5772/57313.
+  
+
+\bibitem{b3}
+Y. Liu and G. Nejat, “Multi-robot cooperative learning for semi- autonomous control in urban search and rescue applications”, Journal of Field Robotics, vol. 33, no. 4, pp. 512-536, 2016.
+\bibitem{b4}
+Adams, Julie. (2002). Critical Considerations for Human-Robot Interface Development. 
+
+\bibitem{b5}
+M.R. Endsley, “Design and evaluation for situation awareness enhancement”, Human Factors Society 32nd Annual Meeting, Santa Monica, CA, pp. 97–101, 1988.
+
+
+
+
+
+
+
+
+
+
+\bibitem{b6}
+
+J. L. Drury, L. Riek, and N. Rackliffe, ‘‘A decomposition of UAV-related
+situation awareness,’’ in Proc. 1st ACM SIGCHI/SIGART Conf. Hum.-Robot Interact., 2006, pp. 88–94.
+
+
+\bibitem{b7}
+Sanders, M. S., \& McCormick, E. J. (1993). Human factors in engineering and design (7th ed.). Mcgraw-Hill Book Company.
+
+\bibitem{b8}
+Lysaght, R.J.; Hill, S.G.; Dick, A.O.; Plamondon, B.D.; Linton, P.M. Operator Workload: Comprehensive Review and Evaluation ofOperator Workload Methodologies (No. TR-2075-3); Analytics Inc.: Willow Grove, PA, USA, 1989.
+
+
+
+
+\bibitem{b9}
+Donald, C. 2001. Vigilance. 35-50. In People in Control Human Factors in Control Room Design edited by Noyes, J. and Bransby, M. London: The Institution of Electrical Engineers.
+
+
+\bibitem{b10}
+Sanders, M. S., \& McCormick, E. J. (1987). Human factors in engineering and design (6th ed.). McGraw-Hill Book Company.
+
+
+
+\bibitem{b11}
+M. S. Prewett, R. C. Johnson, K. N. Saboe, L. R. Elliott, and M. D. Coovert, “Managing workload in human-robot interaction: A review of empirical studies,” Comput. Human Behav., vol. 26, no. 5, pp. 840–856, 2010, doi: 10.1016/j.chb.2010.03.010.
+
+\bibitem{b12}
+A. Naumann, J. Hurtienne, J. H. Israel, C. Mohs, M. C. Kindsm¨uller, H. A. Meyer, and S. Hußlein, “Intuitive use of operator interfaces: Defining a vague concept,” in Engineering Psychology and Cognitive Ergonomics, D. Harris, Ed. Berlin, Heidelberg: Springer Berlin Heidelberg, 2007, pp. 128–136.
+
+\bibitem{b13}
+Niroui, F., Liu, Y., Bichay, R., Barker, E., Elchami, C., Gillett, O., Ficocelli, M., & Nejat, G. (2017). A graphical user interface for multi-robot control in urban search and rescue applications. IRIS 2016 - 2016 IEEE 4th International Symposium on Robotics and Intelligent Sensors: Empowering Robots with Smart Sensors, December, 217–222. https://doi.org/10.1109/IRIS.2016.8066094
+
+\bibitem{b14}
+J. L. Drury, B. Keyes and H. A. Yanco, "LASSOing HRI: Analyzing situation awareness in map-centric and video-centric interfaces," 2007 2nd ACM/IEEE International Conference on Human-Robot Interaction (HRI), 2007, pp. 279-286, doi: 10.1145/1228716.1228754.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\bibitem{b15} M. Baker, R. Casey, B. Keyes, and H. A. Yanco, “Improved interfaces for human-robot interaction in urban search and rescue,” Conf. Proc. - IEEE Int. Conf. Syst. Man Cybern., vol. 3, pp. 2960–2965, 2004, doi: 10.1109/ICSMC.2004.1400783.
+\bibitem{b16}
+R. Luz, J. Corujeira, L. Grisoni, F. Giraud, J. L. Silva, and R. Ventura, “On the Use of Haptic Tablets for UGV Teleoperation in Unstructured Environments: System Design and Evaluation,” IEEE Access, vol. 7, pp. 95443–95454, 2019, doi: 10.1109/ACCESS.2019.2928981v.
+
+\bibitem{b17}
+Fang, H. C., Ong, S. K., & Nee, A. Y. C. (2014). Novel AR-based interface for human-robot interaction and visualization. Advances in Manufacturing, 2(4), 275–288. https://doi.org/10.1007/s40436-014-0087-9
+
+
+\bibitem{b18}
+S. Livatino, F. Banno and G. Muscato, "3-D Integration of Robot Vision and Laser Data With Semiautomatic Calibration in Augmented Reality Stereoscopic Visual Interface," in IEEE Transactions on Industrial Informatics, vol. 8, no. 1, pp. 69-77, Feb. 2012, doi: 10.1109/TII.2011.2174062.
+
+\bibitem{b19}
+H. Martins and R. Ventura, “Immersive 3-D teleoperation of a search and rescue robot using a head-mounted display,” ETFA 2009 - 2009 IEEE Conf. Emerg. Technol. Fact. Autom., 2009, doi: 10.1109/ETFA.2009.5347014.
+
+\bibitem{b20}
+J. J. Roldán, E. Peña-Tapia, A. Martín-Barrio, M. A. Olivares-Méndez, J. del Cerro, and A. Barrientos, “Multi-robot interfaces and operator situational awareness: Study of the impact of immersion and prediction,” Sensors (Switzerland), vol. 17, no. 8, pp. 1–25, 2017, doi: 10.3390/s17081720.
+
+
+\bibitem{b21}
+GitHub - turtlebot/turtlebot: The turtlebot stack provides all the basic drivers for running and using a TurtleBot. GitHub. \\ Available: https://github.com/turtlebot/turtlebot
+
+\bibitem{b22}
+GitHub - herolab-uga/heroswarm-v1: HeRo Swarm Robotics Project - Version V1 - Assembly and Codes. GitHub. \\ Available:   https://github.com/herolab-uga/heroswarm\_v1
+
+
+\bibitem{b23}
+GitHub - AprilRobotics/apriltag: AprilTag is a visual fiducial system popular for robotics research. GitHub. \\ Available: https://github.com/AprilRobotics/apriltag
+
+\bibitem{b24}
+Grisetti, Giorgio et al. “Improving Grid-based SLAM with Rao-Blackwellized Particle Filters by Adaptive Proposals and Selective Resampling.” Proceedings of the 2005 IEEE International Conference on Robotics and Automation (2005): 2432-2437.\\ Available: https://github.com/OpenSLAM-org/openslam\_gmapping
+
+\bibitem{b25}
+Taylor, R. M. (1990). Situation awareness rating technique (SART): the development of a tool for aircrew systems design. In Situational Awareness in Aerospace Operations (Chapter 3). France: Neuilly sur-Seine, NATO-AGARD-CP-478.
+
+\bibitem{b26}
+S. G. Hart and L. E. Staveland, “Development of nasa-tlx (task load index): Results of empirical and theoretical research,” in Human Mental Workload, ser. Advances in Psychology, P. A. Hancock and N. Meshkati, Eds. North-Holland, 1988, vol. 52, pp. 139–183. [Online]. Available: https://www.sciencedirect.com/science/article/pii/ S0166411508623869
+
+
+
+\bibitem{b27}
+Endsley M. R. (1988), Situational awareness global assessment technique (SAGAT). Proceedings of the National Aerospace and Electronics Conference. 789-795.
+
+\end{thebibliography}
+
+
+
+
+\vspace{12pt}
+
+
+
+\end{document}
